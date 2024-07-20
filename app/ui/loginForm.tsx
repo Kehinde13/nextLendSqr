@@ -1,6 +1,10 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 
 const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className="px-10 md:px-0 md:mt-48 md:w-[50%]">
       <div>
@@ -10,18 +14,31 @@ const LoginForm = () => {
         <p>Enter details to login</p>
       </div>
 
-      <form action="" className="mt-5 flex flex-col gap-5">
+      <form action="" className="mt-5 flex flex-col gap-5 relative">
         <label className="input bg-white border border-gray-300 md:w-[70%] flex items-center gap-2">
           <input type="text" className="grow" placeholder="Email" />
         </label>
 
         <label className="input bg-white border border-gray-300 md:w-[70%] flex items-center gap-2">
-          <input type="password" className="grow" placeholder="password" />
+          <input
+            type={showPassword ? "text" : "password"}
+            className="grow"
+            placeholder="password"
+          />
         </label>
+
+        <p
+          className="text-blue-500 absolute text-sm top-20 right-5 md:right-52 cursor-pointer"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? "HIDE" : "SHOW"}
+        </p>
 
         <p className="text-blue-600">Forgot Password?</p>
 
-        <button className="btn border-none text-white btn-wide md:w-[70%] bg-blue-600">Log In</button>
+        <button className="btn border-none text-white md:w-[70%] bg-blue-600">
+          Log In
+        </button>
       </form>
     </div>
   );
