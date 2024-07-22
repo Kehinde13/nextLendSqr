@@ -23,130 +23,170 @@ import sliders from "@/public/icons/sliders-h 1.png";
 import badge from "@/public/icons/badge-percent 1.png";
 import clipboard from "@/public/icons/clipboard-list 1 (1).png";
 import Image from "next/image";
+import Signout from "@/public/icons/sign-out 1.png";
 
 const MobileMenu = () => {
   return (
     <div>
-      <div className="menu">
-        <div className="flex gap-4">
+      <div className="md:px-5 md:py-10 md:shadow-lg">
+        <div className="flex gap-4 md:hidden">
           <Image src={avatar} alt="user image" />
           <p className="self-center">Adedeji</p>
         </div>
 
-        <form className="my-10">
+        <form className="my-10 md:hidden">
           <input
             type="text"
             placeholder="Search for user"
-            className="bg-white border-gray-300 border input"
+            className="bg-white border-gray-300 border input w-[80%]"
           />
-          <button className="bg-[#39CDCC] btn border-none rounded-l-none ml-[-15px] mt-[-5px]">
+          <button className="bg-[#39CDCC] btn border-none rounded-l-none ml-[-15px] mt-[-6px]">
             <Image src={search} alt="Search" />
           </button>
         </form>
 
         <div className="flex flex-col gap-5">
-          <div className="flex space-x-10">
-            <Image src={briefcase} alt="" className="self-center"/>
+          <div className="flex space-x-10 md:space-x-2 font-bold">
+            <Image src={briefcase} alt="" className="self-center" />
             <h3>Switch Organization</h3>
-            <Image src={down} alt="" className="self-center"/>
+            <Image src={down} alt="" className="self-center" />
           </div>
 
-          <h3 className="flex gap-5">
-            <Image src={home} alt="" className="self-center"/>
-            Dashboard
-          </h3>
-
-          <div>
-            <h4>CUSTOMERS</h4>
-            <p className="flex gap-5">
-              <Image src={userIcon} alt="user icon" className=""/>
-              Users
-            </p>
-            <li>
-              <Image src={users} alt="" />
-              Guarantors
-            </li>
-            <li>
-              <Image src={sack} alt="" />
-              Loans
-            </li>
-            <li>
-              <Image src={handShake} alt="" />
-              Decision Models
-            </li>
-            <li>
-              <Image src={piggy} alt="" />
-              Savings
-            </li>
-            <li>
-              <Image src={loan} alt="" />
-              Loan Requests
-            </li>
-            <li>
-              <Image src={userCheck} alt="" />
-              White List
-            </li>
-            <li>
-              <Image src={userTimes} alt="" />
-              Karma
-            </li>
+          <div className="flex gap-5 font-bold md:my-5">
+            <Image src={home} alt="" className="self-center" />
+            <h2>Dashboard</h2>
           </div>
 
-          <div>
-            <h4>BUSINESS</h4>
-            <li>
-              <Image src={briefcase} alt="" />
-              Organization
-            </li>
-            <li>
-              <Image src={loan} alt="" />
-              Loan Products
-            </li>
-            <li>
-              <Image src={bank} alt="" />
-              Savings Products
-            </li>
-            <li>
-              <Image src={savings} alt="" />
-              Fees and Charges
-            </li>
-            <li>
-              <Image src={phone} alt="" />
-              Transcations
-            </li>
-            <li>
-              <Image src={spinner} alt="" />
+          <div className="flex flex-col gap-3">
+            <h4 className="font-bold text-sm">CUSTOMERS</h4>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={userIcon} alt="user icon" className="self-center" />
+              <h6>Users</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={users} alt="users icon" className="self-center" />
+              <h6>Guarantors</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={sack} alt="sack icon" className="self-center" />
+              <h6>Loans</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image
+                src={handShake}
+                alt="handshake icon"
+                className="self-center"
+              />
+              <h6>Decision Models</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image
+                src={piggy}
+                alt="piggy bank icon"
+                className="self-center"
+              />
+              <h6>Savings</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={loan} alt="loan icon" className="self-center" />
+              <h6>Loan Requests</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image
+                src={userCheck}
+                alt="user checked icon"
+                className="self-center"
+              />
+              <h6>White List</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image
+                src={userTimes}
+                alt="user times icon"
+                className="self-center"
+              />
+              <h6>Karma</h6>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <h4 className="font-bold text-sm">BUSINESS</h4>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image
+                src={briefcase}
+                alt="suitcase icon"
+                className="self-center"
+              />
+              <h6>Organization</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={loan} alt="loan icon" className="self-center" />
+              <h6>Loan Products</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={bank} alt="bank icon" className="self-center" />
+              <h6>Savings Products</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={savings} alt="" className="self-center" />
+              <h6>Fees and Charges</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={phone} alt="phone icon" className="self-center" />
+              <h6>Transcations</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={spinner} alt="spinner icon" className="self-center" />
               Services
-            </li>
-            <li>
-              <Image src={userCog} alt="" />
-              Service Account
-            </li>
-            <li>
-              <Image src={settlement} alt="" />
-              Settlements
-            </li>
-            <li>
-              <Image src={report} alt="" />
-              Reports
-            </li>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={userCog} alt="" className="self-center" />
+              <h6>Service Account</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image
+                src={settlement}
+                alt="settlement icon"
+                className="self-center"
+              />
+              <h6>Settlements</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={report} alt="" className="self-center" />
+              <h6>Reports</h6>
+            </div>
           </div>
 
-          <div>
-            <h4>SETTINGS</h4>
-            <li>
-              <Image src={sliders} alt="" />
-              Preferences
-            </li>
-            <li>
-              <Image src={badge} alt="" />
-              Fees and Pricing
-            </li>
-            <li>
-              <Image src={clipboard} alt="" />
-              Audit logs
-            </li>
+          <div className="flex flex-col gap-3">
+            <h4 className="font-bold text-sm">SETTINGS</h4>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={sliders} alt="sliders icon" className="self-center" />
+              <h6>Preferences</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image src={badge} alt="badge icon" className="self-center" />
+              <h6>Fees and Pricing</h6>
+            </div>
+            <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+              <Image
+                src={clipboard}
+                alt="clipboard icon"
+                className="self-center"
+              />
+              <h6>Audit logs</h6>
+            </div>
           </div>
+
+          <hr />
+
+          <div className="flex gap-3 hover:border-l-[#f17929] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
+            <Image src={Signout} alt="sign out icon" className="self-center" />
+            <h6>Sign Out</h6>
+          </div>
+
+          
+          <h6>Version 1.2.4</h6>
+          
         </div>
       </div>
     </div>
