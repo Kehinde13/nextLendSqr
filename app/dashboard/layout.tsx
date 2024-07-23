@@ -3,7 +3,7 @@ import Sidebar from '../ui/dashboard/Sidebar'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className=" h-full bg-white">
+    <div className="h-full max-h-fit bg-white">
       <Navbar />
       <div className="flex md:overflow-hidden">
         <div className="hidden md:block w-64">
