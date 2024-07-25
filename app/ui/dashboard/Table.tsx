@@ -1,18 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import filter from "@/public/icons/filter-results-button (1).png";
 import options from "@/public/icons/ic-more-vert-18px.png";
 import "./Table.css";
 import Options from "./Options";
 import Filter from "./Filter";
+import { fetchCustomers } from "@/app/lib/Fetchdata";
+import { CustomerField } from "@/app/lib/definitions";
 
 const Table = () => {
   const [dropdownVisible, setDropdownVisible] = useState<
     string | boolean | number | undefined
   >(false);
   const [showFilter, setShowFilter] = useState<boolean>(false);
+  const [customers, setCustomers] = useState<CustomerField[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   const tableHeaders = [
     "ORGANIZATION",
@@ -33,35 +38,21 @@ const Table = () => {
     setShowFilter(!showFilter);
   };
 
-  const dataToDisplay = [
-    {
-      organization: "Dangote",
-      username: "pablo mania",
-      email: "pablomania@mail.com",
-      phone: "08123456789",
-      joined: "11-08-2021",
-      status: "Active",
-      _id: "123",
-    },
-    {
-      organization: "MTN",
-      username: "pablo venz",
-      email: "pablovenz@mail.com",
-      phone: "08987654321",
-      joined: "11-08-2021",
-      status: "Inactive",
-      _id: "121",
-    },
-    {
-      organization: "GTCO",
-      username: "pablo makanaki",
-      email: "pablomaka@mail.com",
-      phone: "08123454321",
-      joined: "11-08-2021",
-      status: "Blacklisted",
-      _id: "122",
-    },
-  ];
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const customers = await fetchCustomers();
+        setCustomers(customers);
+      } catch (err) {
+        setError("Failed to fetch customer data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+  
 
   return (
     <div className="usersTable">
@@ -80,7 +71,7 @@ const Table = () => {
           {showFilter && <Filter />}
         </thead>
         <tbody>
-          {dataToDisplay.map((user, index) => {
+          {customers.map((user, index) => {
             return (
               <tr key={index} className="tableContents border-b-2">
                 <td>{user?.organization}</td>
@@ -101,14 +92,14 @@ const Table = () => {
                 >
                   {user?.status}
                 </td>
-                <td onClick={() => toggleDropdown(user?._id)}>
+                <td onClick={() => toggleDropdown(user?.id)}>
                   <Image src={options} alt="options" />
 
-                  {dropdownVisible === user?._id && (
+                  {dropdownVisible === user?.id && (
                     <Options
                       dropdownVisible={dropdownVisible}
                       setDropdownVisible={setDropdownVisible}
-                      userId={user?._id}
+                      userId={user?.id}
                     />
                   )}
                 </td>
@@ -133,7 +124,7 @@ const Table = () => {
           {showFilter && <Filter />}
         </thead>
         <tbody>
-          {dataToDisplay.map((user, index) => {
+          {customers.map((user, index) => {
             return (
               <tr key={index} className="tableContents">
                 <td>{user?.username}</td>
@@ -157,7 +148,7 @@ const Table = () => {
                     <Options
                       dropdownVisible={dropdownVisible}
                       setDropdownVisible={setDropdownVisible}
-                      userId={user?._id}
+                      userId={user?.id}
                     />
                   )}
                 </td>
