@@ -21,9 +21,9 @@ export default async function CardWrapper() {
   return (
     <div className="md:flex justify-between">
       <Card title="USERS" value={users} icon="users" />
-      <Card title="PENDING" value={active} icon="active" />
-      <Card title="LOAN" value={loan} icon="loan" />
-      <Card title="SAVINGS" value={savings} icon="savings" />
+      <Card title="ACTIVE USERS" value={active} icon="active" />
+      <Card title="USERS WITH LOANS" value={loan} icon="loan" />
+      <Card title="USERS WITH SAVINGS" value={savings} icon="savings" />
     </div>
   );
 }
@@ -40,7 +40,7 @@ const Card = ({
   return (
     <div className="md:w-[23%] mb-5 shadow-xl p-5 flex flex-col gap-3 rounded-xl bg-white font-bold">
       <Image src={icons[icon]} alt={icon} className="" />
-      <h6>{title}</h6>
+      <h6 className="text-sm text-gray-500">{title}</h6>
       <h2 className="text-xl">{value}</h2>
     </div>
   );

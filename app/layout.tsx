@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: '%s | lendSqr Dashboard',
     default: 'lendSqr Dashboard',
   },
-  description: 'LendSqr dashboard that shows the data of lendSqr customers',
+  description: 'LendSqr dashboard',
 };
 
 export default function RootLayout({

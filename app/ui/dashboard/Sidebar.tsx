@@ -27,8 +27,8 @@ import Signout from "@/public/icons/sign-out 1.png";
 
 const MobileMenu = () => {
   return (
-    <div>
-      <div className="md:px-5 md:py-10 md:shadow-lg">
+    <div className="h-full">
+      <div className="md:py-10 md:shadow-lg h-full">
         <div className="flex gap-4 md:hidden">
           <Image src={avatar} alt="user image" />
           <p className="self-center">Adedeji</p>
@@ -46,19 +46,19 @@ const MobileMenu = () => {
         </form>
 
         <div className="flex flex-col gap-5">
-          <div className="flex space-x-10 md:space-x-2 font-bold">
+          <div className="px-5 flex space-x-10 md:space-x-2 font-bold">
             <Image src={briefcase} alt="" className="self-center" />
             <h3>Switch Organization</h3>
             <Image src={down} alt="" className="self-center" />
           </div>
 
-          <div className="flex gap-5 font-bold md:my-5">
+          <div className="px-5 flex gap-5 font-bold md:my-5">
             <Image src={home} alt="" className="self-center" />
             <h2>Dashboard</h2>
           </div>
 
           <div className="flex flex-col gap-3">
-            <h4 className="font-bold text-sm">CUSTOMERS</h4>
+            <h4 className="md:px-5 font-bold text-sm">CUSTOMERS</h4>
             <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
               <Image src={userIcon} alt="user icon" className="self-center" />
               <h6>Users</h6>
@@ -110,7 +110,7 @@ const MobileMenu = () => {
           </div>
 
           <div className="flex flex-col gap-3">
-            <h4 className="font-bold text-sm">BUSINESS</h4>
+            <h4 className="md:px-5 font-bold text-sm">BUSINESS</h4>
             <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
               <Image
                 src={briefcase}
@@ -158,7 +158,7 @@ const MobileMenu = () => {
           </div>
 
           <div className="flex flex-col gap-3">
-            <h4 className="font-bold text-sm">SETTINGS</h4>
+            <h4 className="md:px-5 font-bold text-sm">SETTINGS</h4>
             <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
               <Image src={sliders} alt="sliders icon" className="self-center" />
               <h6>Preferences</h6>
