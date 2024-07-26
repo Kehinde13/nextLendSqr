@@ -10,6 +10,7 @@ import Filter from "./Filter";
 import { fetchCustomers } from "@/app/lib/Fetchdata";
 import { CustomerField } from "@/app/lib/definitions";
 
+
 const Table = () => {
   const [dropdownVisible, setDropdownVisible] = useState<
     string | boolean | number | undefined

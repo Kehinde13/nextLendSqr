@@ -1,5 +1,9 @@
 import { sql } from '@vercel/postgres';
 import { CustomerField } from './definitions';
+
+console.log('All Environment Variables:', process.env);
+console.log('POSTGRES_URL:', process.env.POSTGRES_URL);
+
  
 export async function fetchCustomers(){
         try {
