@@ -1,8 +1,5 @@
 import React from "react";
 
-/* type Prop = {
-    setShowFilter: (filter: boolean) => void;
-} */
 
 const Filter = () => {
   return (

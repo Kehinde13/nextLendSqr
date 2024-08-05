@@ -7,18 +7,16 @@ import options from "@/public/icons/ic-more-vert-18px.png";
 import "./Table.css";
 import Options from "./Options";
 import Filter from "./Filter";
-import { fetchCustomers } from "@/app/lib/Fetchdata";
-import { CustomerField } from "@/app/lib/definitions";
+import { customers } from "@prisma/client";
 
 
-const Table = () => {
+
+
+const Table = ({customers} : {customers: customers[]}) => {
   const [dropdownVisible, setDropdownVisible] = useState<
     string | boolean | number | undefined
   >(false);
   const [showFilter, setShowFilter] = useState<boolean>(false);
-  const [customers, setCustomers] = useState<CustomerField[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   const tableHeaders = [
     "ORGANIZATION",
@@ -39,22 +37,6 @@ const Table = () => {
     setShowFilter(!showFilter);
   };
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const customers = await fetchCustomers();
-        setCustomers(customers);
-      } catch (err) {
-        setError("Failed to fetch customer data.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadData();
-  }, []);
-  
-
   return (
     <div className="usersTable">
       <table className="desktopTable">
@@ -62,7 +44,7 @@ const Table = () => {
           <tr>
             {tableHeaders.map((header) => {
               return (
-                <th key={header} className="headers">
+                <th key={header} className="headers ">
                   {header}
                   <Image src={filter} alt="filter" onClick={toggleFilter} />
                 </th>
@@ -79,7 +61,7 @@ const Table = () => {
                 <td>{user?.username}</td>
                 <td>{user?.email}</td>
                 <td>{user?.phone}</td>
-                <td>{user?.joined}</td>
+                <td>{new Date(user?.joined).toLocaleDateString()}</td>
                 <td
                   className={`${
                     user?.status === "Inactive"
@@ -110,13 +92,13 @@ const Table = () => {
         </tbody>
       </table>
 
-      <table className="mobileTable">
+      <table className="mobileTable p-3">
         <thead>
           <tr>
             {mobileHeaders.map((header) => {
               return (
-                <th key={header} className="headers">
-                  {header}
+                <th key={header}>
+                  <p>{header}</p>
                   <Image src={filter} alt="filter" onClick={toggleFilter} />
                 </th>
               );

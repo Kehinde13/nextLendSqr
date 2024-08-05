@@ -5,6 +5,7 @@ import activate from "@/public/icons/np_user_2995993_000000 1.png";
 import blacklist from "@/public/icons/np_delete-friend_3248001_000000 1.png";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 type Prop = {
   dropdownVisible: string | boolean | number | undefined;
@@ -39,10 +40,10 @@ const Options: React.FC<Prop> = ({
   return (
     <div className="absolute right-1 md:right-5 shadow-xl px-3 py-1 bg-white flex flex-col gap-3" ref={dropdownRef}>
       <div>
-        <div className="flex gap-1">
+        <Link href={`/dashboard/${userId}/userdetails`} className="flex gap-1">
           <Image src={view} alt="" className="self-center"/>
           View Details
-        </div>
+        </Link>
       </div>
       <div>
         <div className="flex gap-1">

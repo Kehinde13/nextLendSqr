@@ -4,14 +4,27 @@ import starEmpty from "@/public/icons/np_star_1171151_000000 1.png";
 import placeHolderImg from "@/public/icons/np_user_948637_000000 1.png";
 import Image from "next/image";
 import UserDetails from "@/app/ui/userdetails/UserDetails";
-/* import UserInfo from "../Components/UserInfo"; */
+import prisma from "@/app/lib/db";
 
-function page() {
+type Params = {
+  params: {
+    id: string;
+  };
+};
 
-    const userProfile = {
-       username: "Kungfu Kenny",
-       _id: "12213",
-       balance: "$250,500.00"
+async function page({ params }: Params) {
+    
+    const userProfile = await prisma.customers.findUnique({
+      where: {
+        id: params?.id
+      }
+    })
+
+    console.log(params.id);
+    
+
+    if (!userProfile) {
+      return <div>User not found</div>;
     }
     
     return (
@@ -25,10 +38,10 @@ function page() {
           <h3 className="font-bold text-xl">User Details</h3>
   
           <div className="flex gap-2 md:gap-5">
-            <button className="text-red-500 text-sm md:text-base border rounded-md border-red-500 px-3 py-1 hover:text-white hover:bg-red-500">
+            <button className="text-red-500 text-sm md:text-base border rounded-md border-red-500 px-2 md:px-3 py-1 hover:text-white hover:bg-red-500">
                 BLACKLIST USER
             </button>
-            <button className="text-[#39CDCC] text-sm md:text-base border rounded-md border-[#39CDCC] px-3 py-1 hover:text-white hover:bg-[#39CDCC]">ACTIVATE USER</button>
+            <button className="text-[#39CDCC] text-sm md:text-base border rounded-md border-[#39CDCC] px-2 md:px-3 py-1 hover:text-white hover:bg-[#39CDCC]">ACTIVATE USER</button>
           </div>
         </div>
   
@@ -41,7 +54,7 @@ function page() {
   
               <div className="self-center">
                 <h3 className="text-xl font-semibold">{userProfile?.username}</h3>
-                {userProfile?._id}
+                <p className="text-xs">{userProfile?.id}</p>
               </div>
             </div>
 
@@ -65,7 +78,7 @@ function page() {
             <li className="cursor-pointer border-b-2 px-2 hover:border-[#39CDCC] hover:text-[#39CDCC] pb-2">Documents</li>
             <li className="cursor-pointer border-b-2 px-2 hover:border-[#39CDCC] hover:text-[#39CDCC] pb-2">Bank Details</li>
             <li className="cursor-pointer border-b-2 px-2 hover:border-[#39CDCC] hover:text-[#39CDCC] pb-2">Loans</li>
-            <li className="cursor-pointer border-b-2 px-2 hover:border-[#39CDCC] hover:text-[#39CDCC] pb-2">Savings</li>
+            <li className="cursor-pointer border-b-2 px-2 hover:border-[#1b7a7a] hover:text-[#39CDCC] pb-2">Savings</li>
             <li className="cursor-pointer border-b-2 px-2 hover:border-[#39CDCC] hover:text-[#39CDCC] pb-2">App and System</li>
           </ul>
         </div>

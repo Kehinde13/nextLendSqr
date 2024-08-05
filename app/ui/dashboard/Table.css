@@ -19,14 +19,10 @@
   
   .usersTable td,
   .usersTable th {
-    padding: 10px ;
     text-align: left;
     font-size: small;
   }
-  
-  .usersTable .headers img {
-    float: right;
-  }
+
   
   .usersTable .blacklisted {
     color: red;
