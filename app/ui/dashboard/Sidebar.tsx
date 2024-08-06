@@ -24,29 +24,23 @@ import badge from "@/public/icons/badge-percent 1.png";
 import clipboard from "@/public/icons/clipboard-list 1 (1).png";
 import Image from "next/image";
 import Signout from "@/public/icons/sign-out 1.png";
+import { InputWithButton } from "../shadcn/InputWithButton";
 
 const MobileMenu = () => {
   return (
-    <div className="h-full">
+    <div className="h-full overflow-y-scroll md:overflow-y-hidden md:border-l-2 md:border md:shadow-lg">
       <div className="md:py-10 md:shadow-lg h-full">
-        <div className="flex gap-4 md:hidden">
+        <div className="flex gap-4 md:hidden p-3">
           <Image src={avatar} alt="user image" />
           <p className="self-center">Adedeji</p>
         </div>
 
-        <form className="my-10 md:hidden">
-          <input
-            type="text"
-            placeholder="Search for user"
-            className="bg-white border-gray-300 border input w-[80%]"
-          />
-          <button className="bg-[#39CDCC] btn border-none rounded-l-none ml-[-15px] mt-[-6px]">
-            <Image src={search} alt="Search" />
-          </button>
-        </form>
+        <div className="md:hidden w-full">
+          <InputWithButton />
+        </div>
 
         <div className="flex flex-col gap-5">
-          <div className="px-5 flex space-x-10 md:space-x-2 font-bold">
+          <div className="px-5 flex space-x-5 md:space-x-2 font-bold">
             <Image src={briefcase} alt="" className="self-center" />
             <h3>Switch Organization</h3>
             <Image src={down} alt="" className="self-center" />
@@ -58,7 +52,7 @@ const MobileMenu = () => {
           </div>
 
           <div className="flex flex-col gap-3">
-            <h4 className="md:px-5 font-bold text-sm">CUSTOMERS</h4>
+            <h4 className="md:px-5 font-bold text-sm px-3">CUSTOMERS</h4>
             <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
               <Image src={userIcon} alt="user icon" className="self-center" />
               <h6>Users</h6>
@@ -110,7 +104,7 @@ const MobileMenu = () => {
           </div>
 
           <div className="flex flex-col gap-3">
-            <h4 className="md:px-5 font-bold text-sm">BUSINESS</h4>
+            <h4 className="md:px-5 font-bold text-sm px-3">BUSINESS</h4>
             <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
               <Image
                 src={briefcase}
@@ -158,7 +152,7 @@ const MobileMenu = () => {
           </div>
 
           <div className="flex flex-col gap-3">
-            <h4 className="md:px-5 font-bold text-sm">SETTINGS</h4>
+            <h4 className="md:px-5 font-bold text-sm px-3">SETTINGS</h4>
             <div className="flex gap-3 hover:border-l-[#39CDCC] border-l-2 md:border-l-4 cursor-pointer border-white pl-2">
               <Image src={sliders} alt="sliders icon" className="self-center" />
               <h6>Preferences</h6>
@@ -185,7 +179,7 @@ const MobileMenu = () => {
           </div>
 
           
-          <h6>Version 1.2.4</h6>
+          <h6 className="px-2">Version 1.2.4</h6>
           
         </div>
       </div>
