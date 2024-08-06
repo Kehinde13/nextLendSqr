@@ -23,7 +23,7 @@ export interface CustomerField {
   joined: Date;
   address: string;
   index: number;
-  /* guarantors: Array<Guarantor>;  */
+  guarantors: Array<Guarantor>; 
 }
 
 // Customer.ts
