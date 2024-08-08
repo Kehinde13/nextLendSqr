@@ -1,0 +1,14 @@
+.blacklisted {
+  color: red;
+}
+.active {
+  color: #70f770;
+}
+
+.pending {
+  color: orange;
+}
+
+.inactive {
+  color: #b9b9b9;
+}

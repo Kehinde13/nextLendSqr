@@ -41,7 +41,6 @@ const MobileMenu = () => {
 
         <div className="flex flex-col gap-5">
           <div className="px-5 flex space-x-5 md:space-x-2 font-bold">
-            <Image src={briefcase} alt="" className="self-center" />
             <h3>Switch Organization</h3>
             <Image src={down} alt="" className="self-center" />
           </div>

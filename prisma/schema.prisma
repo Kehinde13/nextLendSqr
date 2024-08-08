@@ -22,9 +22,9 @@ model customers {
   name       String
   email      String   @unique
   isActive   Boolean
-  balance    String
+  balance    Int
   age        Int
-  username   String
+  username   String   @unique
   gender     String
   organization String
   phone      String

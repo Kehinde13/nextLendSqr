@@ -7,7 +7,7 @@ export default function DrawerContainer() {
   return (
     <Drawer>
       <DrawerTrigger>
-        <Image src={menu} alt="menu bar" />
+        <Image src={menu} alt="menu bar" className="md:hidden" />
       </DrawerTrigger>
       <DrawerContent>
         <Sidebar />

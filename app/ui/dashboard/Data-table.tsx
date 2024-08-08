@@ -1,6 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
+import "./styles.css";
+import view from "@/public/icons/np_view_1214519_000000 1.png";
+import activate from "@/public/icons/np_user_2995993_000000 1.png";
+import blacklist from "@/public/icons/np_delete-friend_3248001_000000 1.png";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -12,20 +16,18 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
+} from "@tanstack/react-table";
+import { ChevronDown, MoreHorizontal } from "lucide-react";
 
-import { Button } from "@/app/ui/shadcn/button"
+import { Button } from "@/app/ui/shadcn/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/app/ui/shadcn/dropdown-menu"
-import { Input } from "@/app/ui/shadcn/input"
+} from "@/app/ui/shadcn/dropdown-menu";
+import { Input } from "@/app/ui/shadcn/input";
 import {
   Table,
   TableBody,
@@ -33,21 +35,22 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/app/ui/shadcn/table"
-
+} from "@/app/ui/shadcn/table";
+import Image from "next/image";
+import Link from "next/link";
+import { Customer } from "@/app/lib/definitions";
 
 export type tableData = {
-  organization: string
-  username: string
-  email: string
-  phone: string
-  joined: Date
-  status: string
-  id: string
-}
+  organization: string;
+  username: string;
+  email: string;
+  phone: string;
+  joined: Date;
+  status: string;
+  id: string;
+};
 
-export const columns: ColumnDef<tableData>[] = [
-
+export const columns: ColumnDef<Customer>[] = [
   {
     accessorKey: "organization",
     header: "ORGANIZATION",
@@ -56,31 +59,59 @@ export const columns: ColumnDef<tableData>[] = [
     ),
   },
   {
+    accessorKey: "username",
+    header: "USERNAME",
+    cell: ({ row }) => (
+      <div className="lowercase">{row.getValue("username")}</div>
+    ),
+  },
+  {
     accessorKey: "email",
-    header: "USERNAME", 
+    header: "EMAIL",
     cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
   },
   {
     accessorKey: "phone",
-    header: "PHONE NUMBER", 
+    header: "PHONE NUMBER",
     cell: ({ row }) => <div className="lowercase">{row.getValue("phone")}</div>,
   },
   {
     accessorKey: "joined",
-    header: "JOINED",      
-    cell: ({ row }) => <div className="lowercase">{new Date(row.getValue("joined")).toLocaleDateString()}</div>,
+    header: "JOINED",
+    cell: ({ row }) => (
+      <div className="lowercase">
+        {new Date(row.getValue("joined")).toLocaleDateString()}
+      </div>
+    ),
   },
   {
     accessorKey: "status",
-    header: "STATUS", 
-    cell: ({ row }) => <div className="lowercase">{row.getValue("status")}</div>,
+    header: "STATUS",
+    cell: ({ row }) => {
+      return (
+        <div
+          className={`lowercase 
+       ${
+         row.getValue("status") == ("Active" || "active")
+           ? "active"
+           : row.getValue("status") == "Inactive"
+           ? "inactive"
+           : row.getValue("status") == "Blacklisted"
+           ? "blacklisted"
+           : "pending"
+       }
+       `}
+        >
+          {row.getValue("status")}
+        </div>
+      );
+    },
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original
-
+      const rowId = row.original.id; // Use row.original to access the raw data
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -90,30 +121,57 @@ export const columns: ColumnDef<tableData>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
+            <DropdownMenuItem>
+              <Link
+                href={`/dashboard/${rowId}/userdetails`}
+                className="flex gap-1"
+              >
+                <Image src={view} alt="" />
+                View Details
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Image src={blacklist} alt="" className="mx-1" />
+              Blacklist User
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Image src={activate} alt="" className="mx-1" />
+              Activate User
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      )
+      );
     },
   },
-]
+];
 
-export function DataTable({data} : {data: tableData[]}) {
-  const [sorting, setSorting] = React.useState<SortingState>([])
+export function DataTable({ customers, totalCustomers }: { customers: Customer[]; totalCustomers: number }) {
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  )
+  );
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = React.useState({})
+    React.useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = React.useState({});
+  const [currentPageNumber, setCurrentPageNumber] = React.useState(1)
+  const [data, setData] = React.useState<Customer[]>([])
+  const TOTAL_VALUES_PER_PAGE = 10;
+  const totalPages = Math.ceil(totalCustomers / TOTAL_VALUES_PER_PAGE);
+
+  React.useEffect(() => {
+    const start = (currentPageNumber - 1) * TOTAL_VALUES_PER_PAGE;
+    const end = currentPageNumber * TOTAL_VALUES_PER_PAGE;
+    setData((customers?.slice(start, end)));
+  }, [currentPageNumber, customers]);
+
+  const goOnPrevPage = () => {
+    setCurrentPageNumber((prev) => prev - 1);
+  };
+
+  const goOnNextPage = () => {
+    setCurrentPageNumber((prev) => prev + 1);
+  };
+
 
   const table = useReactTable({
     data,
@@ -132,16 +190,32 @@ export function DataTable({data} : {data: tableData[]}) {
       columnVisibility,
       rowSelection,
     },
-  })
+  });
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 768;
+      setColumnVisibility({
+        organization: !isMobile,
+        phone: !isMobile,
+        joined: !isMobile,
+        actions: !isMobile,
+        email: !isMobile,
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter status..."
+          value={(table.getColumn("status")?.getFilterValue() as string) ?? ""}
           onChange={(event: { target: { value: any } }) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("status")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -167,7 +241,7 @@ export function DataTable({data} : {data: tableData[]}) {
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>
-                )
+                );
               })}
           </DropdownMenuContent>
         </DropdownMenu>
@@ -187,7 +261,7 @@ export function DataTable({data} : {data: tableData[]}) {
                             header.getContext()
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -223,29 +297,28 @@ export function DataTable({data} : {data: tableData[]}) {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+        <div>
+          
         </div>
         <div className="space-x-2">
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
+            onClick={goOnPrevPage}
+            disabled={currentPageNumber === 1}
           >
             Previous
           </Button>
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
+            onClick={goOnNextPage}
+            disabled={currentPageNumber >= totalPages}
           >
             Next
           </Button>
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { Input } from "./shadcn/input";
+import { Button } from "./shadcn/button";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,21 +16,13 @@ const LoginForm = () => {
         <p>Enter details to login</p>
       </div>
 
-      <form action="" className="mt-5 flex flex-col gap-5 relative">
-        <label className="input bg-white border border-gray-300 md:w-[70%] flex items-center gap-2">
-          <input type="text" className="grow" placeholder="Email" />
-        </label>
+      <form action="" className="mt-5 flex flex-col gap-5 relative md:w-[70%]">
+      
+      <Input type="email" placeholder="Email" />
 
-        <label className="input bg-white border border-gray-300 md:w-[70%] flex items-center gap-2">
-          <input
-            type={showPassword ? "text" : "password"}
-            className="grow"
-            placeholder="password"
-          />
-        </label>
-
+      <Input type={showPassword ? "text" : "password"} placeholder="Password" />
         <p
-          className="text-blue-500 absolute text-sm top-20 right-5 md:right-52 cursor-pointer"
+          className="text-blue-500 absolute text-sm top-[68px] right-5 cursor-pointer"
           onClick={() => setShowPassword(!showPassword)}
         >
           {showPassword ? "HIDE" : "SHOW"}
@@ -36,9 +30,9 @@ const LoginForm = () => {
 
         <p className="text-blue-600">Forgot Password?</p>
 
-        <button className="btn border-none text-white md:w-[70%] bg-blue-600">
+        <Button className="btn border-none text-white  bg-blue-600">
           Log In
-        </button>
+        </Button>
       </form>
     </div>
   );

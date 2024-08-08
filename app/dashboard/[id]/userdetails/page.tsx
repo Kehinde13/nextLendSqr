@@ -5,6 +5,7 @@ import placeHolderImg from "@/public/icons/np_user_948637_000000 1.png";
 import Image from "next/image";
 import UserDetails from "@/app/ui/userdetails/UserDetails";
 import prisma from "@/app/lib/db";
+import Link from "next/link";
 
 type Params = {
   params: {
@@ -29,10 +30,10 @@ async function page({ params }: Params) {
     
     return (
       <div className="max-w-[100%]">
-        <button className="flex md:gap-5 gap-3">
+        <Link href={'/dashboard'} className="flex md:gap-5 gap-3">
           <Image src={backArr} alt="" className="self-center"/> 
           Back to Users
-        </button>
+        </Link>
   
         <div className="w-full flex flex-col md:flex-row gap-3 justify-between my-10">
           <h3 className="font-bold text-xl">User Details</h3>

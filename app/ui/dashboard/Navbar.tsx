@@ -1,4 +1,6 @@
-import React from "react";
+"use client"
+
+import React, { useState } from "react";
 import logo from "@/public/loginPage/Group (1).svg";
 import alertIcon from "@/public/icons/alert.png";
 import search from "@/public/icons/Search.png";
@@ -7,16 +9,19 @@ import Image from "next/image";
 import Link from "next/link";
 import DrawerContainer from "./Drawer";
 import { InputWithButton } from "../shadcn/InputWithButton";
+import { Customer } from "@/app/lib/definitions";
 
 
 const Navbar = () => {
+  const [customerObj, setCustomer] = useState<Customer | null>(null);
+
   return (
     <div className="md:p-5 p-2 flex justify-between shadow-md">
       <div className="flex gap-36 w-[50%]">
         <Image src={logo} alt="lendSqr logo" className="w-[60%] md:w-[20%]" />
 
         <div className="hidden md:block w-full">
-          <InputWithButton />
+          <InputWithButton setCustomer={setCustomer}/>
         </div>
       </div>
 
