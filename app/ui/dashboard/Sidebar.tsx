@@ -1,6 +1,4 @@
 import avatar from "@/public/avatar.png";
-import dropdown from "@/public/icons/Vector (2).png";
-import search from "@/public/icons/Search.png";
 import briefcase from "@/public/icons/briefcase 1.png";
 import down from "@/public/icons/Vector (3).png";
 import home from "@/public/icons/home 1.png";
@@ -33,10 +31,6 @@ const MobileMenu = () => {
         <div className="flex gap-4 md:hidden p-3">
           <Image src={avatar} alt="user image" />
           <p className="self-center">Adedeji</p>
-        </div>
-
-        <div className="md:hidden w-full">
-          <InputWithButton />
         </div>
 
         <div className="flex flex-col gap-5">

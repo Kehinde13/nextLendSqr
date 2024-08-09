@@ -199,7 +199,6 @@ export function DataTable({ customers, totalCustomers }: { customers: Customer[]
         organization: !isMobile,
         phone: !isMobile,
         joined: !isMobile,
-        actions: !isMobile,
         email: !isMobile,
       });
     };
@@ -246,7 +245,7 @@ export function DataTable({ customers, totalCustomers }: { customers: Customer[]
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border p-2 drop-shadow-lg bg-white">
+      <div className="rounded-md border p-2 drop-shadow-lg">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

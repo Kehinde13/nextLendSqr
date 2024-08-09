@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { work_sans } from "./ui/fonts";
 import { cn } from "@/app/lib/utils";
+import { ThemeProvider } from "./ui/shadcn/theme-provider"
 
 export const metadata: Metadata = {
   title: {
@@ -21,7 +22,14 @@ export default function RootLayout({
       <body className={cn(
           "bg-background font-sans antialiased",
           work_sans.className
-        )}>{children}</body>
+        )}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+          >
+          {children}
+          </ThemeProvider>
+          </body>
     </html>
   );
 }

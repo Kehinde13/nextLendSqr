@@ -3,9 +3,16 @@
 import React, { useState } from "react";
 import { Input } from "./shadcn/input";
 import { Button } from "./shadcn/button";
+import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter()
+
+  const signIn = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    router.push('dashboard')
+  }
 
   return (
     <div className="px-10 md:px-0 md:mt-48 md:w-[50%]">
@@ -16,7 +23,7 @@ const LoginForm = () => {
         <p>Enter details to login</p>
       </div>
 
-      <form action="" className="mt-5 flex flex-col gap-5 relative md:w-[70%]">
+      <form onSubmit={signIn} className="mt-5 flex flex-col gap-5 relative md:w-[70%]">
       
       <Input type="email" placeholder="Email" />
 
@@ -30,7 +37,8 @@ const LoginForm = () => {
 
         <p className="text-blue-600">Forgot Password?</p>
 
-        <Button className="btn border-none text-white  bg-blue-600">
+        <Button  
+        className="btn border-none text-white  bg-blue-600">
           Log In
         </Button>
       </form>

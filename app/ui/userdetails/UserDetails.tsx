@@ -23,7 +23,7 @@ const UserDetails = () => {
     }
 
     return (
-        <div className="p-10 bg-white rounded-md shadow-xl mt-20 text-sm">
+        <div className="p-10 rounded-md shadow-xl mt-20 text-sm">
           <div>
             <h4 className='text-xl font-semibold mb-5'>Personal Information</h4>
     

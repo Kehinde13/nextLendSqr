@@ -38,9 +38,9 @@ const Card = ({
   icon: "users" | "active" | "loan" | "savings";
 }) => {
   return (
-    <div className="md:w-[23%] mb-5 shadow-xl p-5 flex flex-col gap-3 rounded-xl bg-white font-bold">
+    <div className="md:w-[23%] mb-5 shadow-xl p-5 flex flex-col gap-3 rounded-xl font-bold">
       <Image src={icons[icon]} alt={icon} className="" />
-      <h6 className="text-sm text-gray-500">{title}</h6>
+      <h6 className="text-sm ">{title}</h6>
       <h2 className="text-xl">{value}</h2>
     </div>
   );
