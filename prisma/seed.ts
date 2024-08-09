@@ -28,7 +28,7 @@ async function main() {
   console.log(`Start Seeding .....`);
   
   for (const customer of insertedcustomers) {
-    const newCustomer = await prisma.customers.create({
+      await prisma.customers.create({
       data: customer
     });
     console.log('data seeded');
