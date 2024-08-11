@@ -39,6 +39,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Customer } from "@/app/lib/definitions";
+import Loader from "./loader";
 
 export type tableData = {
   organization: string;
@@ -151,7 +152,7 @@ export function DataTable({ customers, totalCustomers }: { customers: Customer[]
     []
   );
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
+  React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
   const [currentPageNumber, setCurrentPageNumber] = React.useState(1)
   const [data, setData] = React.useState<Customer[]>([])
@@ -209,7 +210,10 @@ export function DataTable({ customers, totalCustomers }: { customers: Customer[]
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+     {
+      data.length ? (
+        <>
+         <div className="flex items-center py-4">
         <Input
           placeholder="Filter status..."
           value={(table.getColumn("status")?.getFilterValue() as string) ?? ""}
@@ -318,6 +322,11 @@ export function DataTable({ customers, totalCustomers }: { customers: Customer[]
           </Button>
         </div>
       </div>
+        </>
+      ) : (
+        <Loader />
+      )
+     }
     </div>
   );
 }
