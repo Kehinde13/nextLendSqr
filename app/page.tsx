@@ -15,7 +15,7 @@ export default function Home() {
           />
           <Image
            src={signInHero}
-           alt="lendSqr logo"
+           alt="lendSqr hero"
            className="hidden md:block"
            />
         </div>

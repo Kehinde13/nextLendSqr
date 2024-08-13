@@ -38,7 +38,7 @@ const LoginForm = () => {
         <p className="text-blue-600">Forgot Password?</p>
 
         <Button  
-        className="btn border-none text-white  bg-blue-600">
+          className="btn border-none text-white  bg-blue-600">
           Log In
         </Button>
       </form>
