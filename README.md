@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# lendsqr dashboard
 
-## Getting Started
+LendSqr dashboaard with nextJS
 
-First, run the development server:
+## Description
+
+This project is a web application designed with four primary pages: Login, Dashboard, User Page, and User Details Page. It leverages a postgres Database containing 200 user records and utilizes prisma to retrieve user details on the User Details Page. The application is mobile-responsive, ensuring a seamless user experience across different devices.
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Links](#links)
+
+## Features
+
+1. **Login Page**: A secure login interface for user authentication.
+2. **Dashboard**: A central hub for accessing various functionalities of the application.
+4. **User Details Page**: Shows detailed information of a selected user, stored and retrieved from local storage.
+5. **Filter Users**: Filter users based on the value inputted.
+6. **Mobile Responsive**: Ensures optimal viewing and interaction across various devices, including mobile phones and tablets.
+
+## Technologies Used
+
+- HTML5
+- Shadcn
+- TypeScript
+- React.js 
+- Postgres
+- prisma
+- Jest (for testing)
+
+## Installation
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Kehinde13/lendSqr
+    cd lendSqr
+    ```
+
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Start the development server:
+    ```bash
+    npm start
+    ```
+
+
+## Usage
+
+1. Navigate to the Login Page (`/login`) and enter your credentials to access the application.
+2. Once logged in, you'll be redirected to the Dashboard (`/dashboard`).
+3. From the Dashboard, navigate to the table and click on the option icon to view detailed information on the User Details Page (`/users/:id`).
+4. Click the filter icon on the table header to toggle filter visibilty
+
+
+### Example User Data
+```json
+{
+    _id: "1",
+    name: "John Doe",
+    index: 0,
+    guid: "guid-1",
+    isActive: true,
+    balance: "1000",
+    picture: "picture-url",
+    age: 30,
+    username: "johndoe",
+    gender: "male",
+    organization: "Organization",
+    email: "john@example.com",
+    phone: "1234567890",
+    marital: "single",
+    residence: "Address",
+    children: "none",
+    status: "active",
+    address: "Address",
+    joined: "2020-01-01",
+    guarantor: [
+      {
+        id: 1,
+        name: "Guarantor 1",
+        email: "guarantor1@example.com",
+        phone: "0987654321",
+        relationship: "friend",
+      },
+      {
+        id: 2,
+        name: "Guarantor 2",
+        email: "guarantor2@example.com",
+        phone: "1234509876",
+        relationship: "colleague",
+      },
+    ],
+  }
+  ```
+
+# Testing
+This project includes tests written with Jest to ensure the functionality and reliability of the application.
+
+## Running Tests
+To run the tests, use the following command:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm test
 ```
+## Test Coverage
+The tests cover various aspects of the application, including:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Component rendering
+- User interactions
+- API calls and data handling
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Links
+- [Repository](https://github.com/Kehinde13/lendSqr)
+- [live site](https://lend-sqr-one.vercel.app/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
