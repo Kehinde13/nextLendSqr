@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import { DataTable } from '@/app/ui/dashboard/Data-table';
 import { Customer } from '@/app/lib/definitions';
@@ -54,14 +54,12 @@ describe('DataTable Component', () => {
     expect(screen.getByText('userA')).toBeInTheDocument();
     expect(screen.getByText('userA@example.com')).toBeInTheDocument();
     expect(screen.getByText('1234567890')).toBeInTheDocument();
-    /* expect(screen.getByText('1/1/2023')).toBeInTheDocument(); */
     expect(screen.getByText('Active')).toBeInTheDocument();
 
     expect(screen.getByText('Company B')).toBeInTheDocument();
     expect(screen.getByText('userB')).toBeInTheDocument();
     expect(screen.getByText('userB@example.com')).toBeInTheDocument();
     expect(screen.getByText('0987654321')).toBeInTheDocument();
-    /* expect(screen.getByText('1/2/2023')).toBeInTheDocument(); */
     expect(screen.getByText('Inactive')).toBeInTheDocument();
   });
   

@@ -29,7 +29,7 @@ describe('Home', () => {
 
     // Assert that the images are rendered
     const logoImage = screen.getAllByAltText('lendSqr logo')
-    expect(logoImage[0]).toBeInTheDocument()  
+    expect(logoImage).toBeInTheDocument()  
   }),
 
   it('renders the Login form', () => {
